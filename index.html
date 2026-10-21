@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Birthday, Navinya ♡</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Great+Vibes&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --pink:#F9C8D9;
+  --cream:#FFF6E9;
+  --peach:#FFD8C2;
+  --white:#fff;
+  --rose:#E88AAE;
+  --ink:#5A3A48;
+  --muted:#7A5A67;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:"DM Sans",sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  overflow-x:hidden;
+}
+
+button{font-family:inherit;border:none;cursor:pointer}
+
+.btn{
+  background:linear-gradient(135deg,#F2A0BE,var(--rose));
+  color:#fff;
+  padding:15px 28px;
+  border-radius:999px;
+  font-weight:700;
+  box-shadow:0 14px 30px rgba(232,138,174,.38);
+  transition:.25s;
+}
+
+.btn:hover{transform:translateY(-3px)}
+.btn:active{transform:scale(.96)}
+
+/* Intro */
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:60;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+  background:
+    radial-gradient(circle at 20% 20%, #F9C8D9AA, transparent 55%),
+    radial-gradient(circle at 80% 80%, #FFD8C2AA, transparent 55%),
+    var(--cream);
+  transition:.7s;
+}
+
+#intro.hide{opacity:0;visibility:hidden;pointer-events:none}
+
+.envelope{
+  width:220px;
+  height:145px;
+  background:var(--pink);
+  border-radius:14px;
+  position:relative;
+  margin:45px 0 30px;
+  box-shadow:0 25px 55px rgba(90,58,72,.22);
+  animation:envelope3d 6s infinite;
+}
+
+.envelope::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:#F3B2C8;
+  clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%);
+  border-radius:14px;
+}
+
+.heart{
+  position:absolute;
+  top:52px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:36px;
+  z-index:2;
+  animation:beat 1.8s infinite;
+}
+
+#intro h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(1.9rem,6vw,3rem);
+}
+
+.hey{
+  font-family:"Great Vibes",cursive;
+  font-size:2.3rem;
+  color:#B15C7D;
+  margin-bottom:22px;
+}
+
+/* Main */
+#main{
+  display:none;
+  max-width:1050px;
+  margin:auto;
+  padding:80px 18px 60px;
+}
+
+#main.show{display:block;animation:fade .9s}
+
+.hero{text-align:center;margin-bottom:70px}
+
+.hero h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(2.3rem,7vw,4.2rem);
+  margin:14px 0;
+}
+
+.hero p{
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(1.5rem,4vw,2.3rem);
+  color:var(--muted);
+}
+
+h2{
+  font-family:"Playfair Display",serif;
+  text-align:center;
+  font-size:clamp(1.6rem,5vw,2.5rem);
+  margin-bottom:35px;
+}
+
+/* Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+  margin-bottom:75px;
+}
+
+.card{
+  background:rgba(255,255,255,.85);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:26px;
+  padding:28px;
+  box-shadow:0 25px 55px rgba(90,58,72,.14);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 35px 70px rgba(90,58,72,.20);
+}
+
+.card h3{margin:12px 0}
+
+/* Photos */
+.photos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+  max-width:780px;
+  margin:0 auto 75px;
+}
+
+.polaroid{
+  background:var(--white);
+  padding:12px 12px 18px;
+  border-radius:10px;
+  box-shadow:0 25px 55px rgba(90,58,72,.18);
+  transform:rotate(var(--r));
+  animation:float 7s infinite;
+  transition:.3s;
+}
+
+.polaroid:hover{transform:rotate(0) scale(1.04)}
+
+.polaroid img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:5px;
+  background:linear-gradient(135deg,var(--pink),var(--peach));
+}
+
+.polaroid figcaption{
+  font-family:"Great Vibes",cursive;
+  font-size:1.55rem;
+  text-align:center;
+  padding-top:12px;
+}
+
+/* Late wish */
+.late{
+  background:linear-gradient(135deg,#FFF6E9,#FFE9E0);
+  border-radius:30px;
+  padding:clamp(26px,6vw,55px);
+  text-align:center;
+  box-shadow:0 30px 70px rgba(90,58,72,.15);
+  margin-bottom:75px;
+}
+
+.late p{
+  max-width:720px;
+  margin:auto;
+  line-height:1.85;
+  font-size:clamp(1rem,3vw,1.15rem);
+}
+
+/* Letter */
+.letter{
+  background:#FFFCF7;
+  border-radius:30px;
+  padding:clamp(26px,6vw,60px);
+  box-shadow:0 30px 70px rgba(90,58,72,.16);
+  margin-bottom:70px;
+}
+
+.letter p{margin-bottom:18px;line-height:1.85}
+
+.sign{
+  font-family:"Great Vibes",cursive;
+  font-size:2.1rem;
+  color:#A64D70;
+}
+
+/* Quiz page */
+#quizPage{
+  display:none;
+  min-height:100vh;
+  padding:80px 18px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 15% 15%, #F9C8D9AA, transparent 50%),
+    radial-gradient(circle at 85% 85%, #FFD8C2AA, transparent 50%),
+    var(--cream);
+}
+
+#quizPage.show{display:block;animation:fade .8s}
+
+.cat{
+  font-size:70px;
+  margin-bottom:10px;
+  animation:float 4s infinite;
+}
+
+.quiz-box{
+  max-width:620px;
+  margin:auto;
+  background:rgba(255,255,255,.9);
+  border-radius:30px;
+  padding:40px 22px;
+  box-shadow:0 30px 70px rgba(90,58,72,.16);
+}
+
+.question{
+  font-size:1.15rem;
+  margin-bottom:28px;
+  min-height:60px;
+}
+
+.buttons{
+  display:flex;
+  gap:16px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+#noBtn{
+  background:#F3B2C8;
+  color:#7A3A55;
+  transition:.25s;
+}
+
+#quizDone{
+  margin-top:25px;
+  font-family:"Great Vibes",cursive;
+  font-size:2.1rem;
+  color:#A64D70;
+  display:none;
+}
+
+#quizDone.show{display:block;animation:fade .5s}
+
+.wish{text-align:center;margin-bottom:70px}
+
+#wishMsg{
+  margin-top:22px;
+  background:var(--white);
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 20px 45px rgba(90,58,72,.14);
+  display:none;
+}
+
+#wishMsg.show{display:block;animation:fade .4s}
+
+footer{
+  text-align:center;
+  padding:45px 20px;
+  color:var(--muted);
+}
+
+#particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:50;
+  overflow:hidden;
+}
+
+.p{
+  position:absolute;
+  top:-50px;
+  animation:fall linear forwards;
+}
+
+@keyframes envelope3d{
+  0%,100%{transform:rotateX(8deg) rotateY(-10deg)}
+  50%{transform:rotateX(-6deg) rotateY(10deg) translateY(-12px)}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+@keyframes beat{
+  0%,100%{transform:translateX(-50%) scale(1)}
+  50%{transform:translateX(-50%) scale(1.2)}
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(180deg);opacity:0}
+}
+
+@media(max-width:430px){
+  .photos{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<section id="intro">
+  <h1>A little something for you ♡</h1>
+
+  <div class="envelope">
+    <div class="heart">💗</div>
+  </div>
+
+  <p class="hey">Hey, Navinya!</p>
+
+  <button class="btn" id="openBtn">Open Your Letter 💌</button>
+</section>
+
+<div id="particles"></div>
+
+<main id="main">
+  <header class="hero">
+    <h1>Happy Birthday, Navinya ♡</h1>
+    <p>A scrapbook full of smiles, memories and love.</p>
+  </header>
+
+  <!-- LATE WISH -->
+  <section class="late">
+    <h2>A little late, but from the heart 💌</h2>
+    <p>
+      I know I’m a little late with your birthday wish, but you know what they say —
+      the best things always arrive fashionably late. Just like this little surprise,
+      made specially for you. ♡
+    </p>
+  </section>
+
+  <!-- BLESSINGS -->
+  <section>
+    <h2>The blessings you got from your friends 🤍</h2>
+
+    <div class="cards">
+      <article class="card">
+        <h3>🤭 Har time masti</h3>
+        <p>Uska har time masti karna, text ke beech funny emojis daalna 😭💀, aur har chhoti baat ko samajh na — yeh sab usko bilkul alag banata hai. 🌸</p>
+      </article>
+
+      <article class="card">
+        <h3>👀 Uski aankhein</h3>
+        ![navinya4.jpg](https://github.com/user-attachments/assets/0dd8cb71-72a8-434b-b30a-dfb4e118dd9e)
+      </article>
+
+      <article class="card">
+        <h3>😊 Uski smile</h3>
+        <p>Aur sabse best cheez — uski smile. Bhot pyaari hai yaar 🥹💗. Bas dekh ke mood automatically better ho jata hai. ☀️</p>
+      </article>
+
+      <article class="card">
+        <h3>🌷 Respect wali baat</h3>
+        <p>Agar tumse ache se baat kare, to tum uski respect karti ho — yeh baat mujhe sabse zyada achi lagi. 🤍 Aur uska jaldi ghul-mil jana, majak karna aur masti karna bhi best hai. 🎀</p>
+      </article>
+
+      <article class="card">
+        <h3>🧸 Child-like cute face</h3>
+        <p>Uska face ekdum child face tha, bilkul cute sa 🥺💗. Personality aur vibes bhi itni lovely hain ki jab wo paas hoti hai, mahaul hi alag ho jata hai. ✨</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section>
+    <h2>Little moments 🌸</h2>
+
+    <div class="photos">
+      <figure class="polaroid" style="--r:-3deg">
+        <img src="images/navinya1.jpg" alt="Navinya photo 1" onerror="this.style.display='none'">
+        <figcaption>A little sunshine 🌸</figcaption>
+      </figure>
+
+      <figure class="polaroid" style="--r:3deg">
+        <img src="images/navinya2.jpg" alt="Navinya photo 2" onerror="this.style.display='none'">
+        <figcaption>A happy memory ✨</figcaption>
+      </figure>
+
+      <figure class="polaroid" style="--r:2deg">
+        <img src="images/navinya3.jpg" alt="Navinya photo 3" onerror="this.style.display='none'">
+        <figcaption>Cute vibes 🎀</figcaption>
+      </figure>
+
+      <figure class="polaroid" style="--r:-2deg">
+        <img src="images/navinya4.jpg" alt="Navinya photo 4" onerror="this.style.display='none'">
+        <figcaption>Keep smiling ♡</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- LETTER -->
+  <section>
+    <article class="letter">
+      <h2>For your next chapter</h2>
+
+      <p>Dear Navinya,</p>
+
+      <p>Happy birthday. I hope this year brings you good health, peace of mind, good people around you and success in the things you are working for.</p>
+
+      <p>I hope you get the courage to try new things, the patience to handle difficult days, and the happiness of small everyday moments.</p>
+
+      <p>May you always stay true to yourself, keep learning, keep growing, and keep moving towards the life you want for yourself.</p>
+
+      <p>Wishing you a year filled with good memories, good opportunities and reasons to smile.</p>
+
+      <p class="sign">Someone who wanted to make your day special ♡</p>
+    </article>
+  </section>
+
+  <!-- CONTINUE TO QUIZ -->
+  <section class="wish">
+    <h2>Ek chhota sa game hai 🐱</h2>
+    <p style="margin-bottom:22px">Continue dabao aur dekho kya hai 👀</p>
+    <button class="btn" id="continueBtn">Continue ➡️</button>
+  </section>
+
+  <section class="wish">
+    <h2>One more little thing… ✨</h2>
+    <button class="btn" id="wishBtn">Make a Wish ✨</button>
+    <div id="wishMsg">May your year be as lovely as your smile! ♡</div>
+  </section>
+</main>
+
+<!-- QUIZ PAGE -->
+<section id="quizPage">
+  <div class="cat">🐱</div>
+
+  <div class="quiz-box">
+    <h2>Let’s go, we’ll play a quiz game! 🐱🎉</h2>
+
+    <p class="question" id="question">
+      Question 1: Do you enjoy celebrating your birthday with your friends and family? 🎂
+    </p>
+
+    <div class="buttons">
+      <button class="btn" id="yesBtn">Yes 💗</button>
+      <button class="btn" id="noBtn">No 😭</button>
+    </div>
+
+    <div id="quizDone">Yayyy! Quiz complete 🥹💗✨</div>
+  </div>
+</section>
+
+<footer>Made just for Navinya 💗🌸🎀</footer>
+
+<script>
+const openBtn=document.getElementById("openBtn");
+const continueBtn=document.getElementById("continueBtn");
+const wishBtn=document.getElementById("wishBtn");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+
+const intro=document.getElementById("intro");
+const main=document.getElementById("main");
+const quizPage=document.getElementById("quizPage");
+const particles=document.getElementById("particles");
+const wishMsg=document.getElementById("wishMsg");
+const question=document.getElementById("question");
+const quizDone=document.getElementById("quizDone");
+
+const emojis=["💗","🌸","✨","🎀","🎉"];
+const party=["💗","🎉","✨","🎀"];
+
+const questions=[
+  "Question 1: Do you enjoy celebrating your birthday with your friends and family? 🎂",
+  "Question 2: Do you like receiving birthday wishes and small surprises? 🎁",
+  "Question 3: Do you believe this year will bring you something good? ✨"
+];
+
+const noTexts=[
+  "Nahi nahi, galat button 😭",
+  "Try again 🙈",
+  "No allowed nahi hai 😌",
+  "Yes pe click karo na 🥺",
+  "Bhaag gaya No button 😂",
+  "Ab toh Yes bol do 💗"
+];
+
+let current=0;
+let noCount=0;
+
+function makeParticle(type){
+  const s=document.createElement("span");
+  s.className="p";
+  s.textContent=type==="party"
+    ? party[Math.floor(Math.random()*party.length)]
+    : emojis[Math.floor(Math.random()*emojis.length)];
+
+  s.style.left=Math.random()*95+"%";
+  s.style.fontSize=(14+Math.random()*14)+"px";
+  s.style.animationDuration=(6+Math.random()*6)+"s";
+
+  particles.appendChild(s);
+  setTimeout(()=>s.remove(),12000);
+}
+
+function startRain(){
+  for(let i=0;i<8;i++) makeParticle();
+  setInterval(()=>{
+    if(!document.hidden) makeParticle();
+  },700);
+}
+
+function openSurprise(){
+  intro.classList.add("hide");
+  main.classList.add("show");
+  startRain();
+  window.scrollTo(0,0);
+}
+
+function openQuiz(){
+  main.style.display="none";
+  quizPage.classList.add("show");
+  window.scrollTo(0,0);
+}
+
+function celebrate(){
+  wishMsg.classList.add("show");
+  for(let i=0;i<35;i++){
+    setTimeout(()=>makeParticle("party"),i*35);
+  }
+}
+
+function nextQuestion(){
+  current++;
+
+  if(current<questions.length){
+    question.textContent=questions[current];
+  }else{
+    quizDone.classList.add("show");
+    question.textContent="All done! 🎉";
+    for(let i=0;i<30;i++){
+      setTimeout(()=>makeParticle("party"),i*35);
+    }
+  }
+}
+
+function teleportNo(){
+  noCount++;
+
+  if(current<questions.length){
+    question.textContent=noTexts[Math.min(noCount-1,noTexts.length-1)];
+  }
+
+  const box=document.querySelector(".quiz-box");
+  const area=box.getBoundingClientRect();
+
+  const x=Math.random()*(area.width-110);
+  const y=Math.random()*(area.height-70);
+
+  noBtn.style.position="absolute";
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+}
+
+openBtn.addEventListener("click",openSurprise);
+continueBtn.addEventListener("click",openQuiz);
+wishBtn.addEventListener("click",celebrate);
+yesBtn.addEventListener("click",nextQuestion);
+noBtn.addEventListener("click",teleportNo);
+</script>
+
+</body>
+  </html>
